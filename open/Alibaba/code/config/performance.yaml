@@ -1,0 +1,37 @@
+{
+  "model_param": {
+    "model_path": "model/acs_sinianml_acc75.706_is192_p5.297M_f383.205M_fp16_NHWC_B1.so",
+    "input_layer_name": "serving_default_input_0",
+    "output_layer_name": "PartitionedCall",
+    "tvm_llvm_target": "llvm -mcpu=neoverse-n2",
+    "tvm_opt_level": 4,
+    "num_cls": 1000
+  },
+  "dataset_param": {
+    "dataset": "/host/imagenet",
+    "image_list": "/host/imagenet/val_map.txt",
+    "image_size": 192,
+    "batch_size": 1,
+    "layout": "NHWC",
+    "precision": "float16"
+  },
+  "mlperf_param": {
+    "workload": "resnet50",
+    "scenario": "Offline",
+    "mode": "performance",
+    "total_sample_count": 1024,
+    "mlperf_conf": "../measurements/ACS_SINIAN_TVM/resnet50/Offline/mlperf.conf",
+    "user_conf": "../measurements/ACS_SINIAN_TVM/resnet50/Offline/user.conf",
+    "output_logs": "output_logs"
+  },
+  "system_param": {
+    "total_cpu_cores": 128,
+    "num_instance": 4,
+    "core_per_instance": 32,
+    "num_worker_per_instance": 32,
+    "core_per_worker": 1,
+    "warmup": 100,
+    "cores_offset": 0,
+    "backend": "tvm"
+  }
+}

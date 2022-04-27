@@ -1,0 +1,64 @@
+================================================
+MLPerf Results Summary
+================================================
+SUT name : Concurrent_Triton_Server
+Scenario : Server
+Mode     : PerformanceOnly
+Scheduled samples per second : 1501.53
+Result is : INVALID
+  Performance constraints satisfied : Yes
+  Min duration satisfied : NO
+  Min queries satisfied : NO
+  Early stopping satisfied: NO
+Recommendations:
+ * Increase the target QPS so the loadgen pre-generates more queries.
+ * The test exited early, before enough queries were issued.
+   See the detailed log for why this may have occurred.
+Early Stopping Result:
+ * Run unsuccessful.
+ * Processed 64 queries.
+ * Would need to run at least 395 more queries,
+ with the run being successful if every additional
+ query were under latency.
+
+================================================
+Additional Stats
+================================================
+Completed samples per second    : 1191.76
+
+Min latency (ns)                : 10505312
+Max latency (ns)                : 18226636
+Mean latency (ns)               : 13043555
+50.00 percentile latency (ns)   : 13331050
+90.00 percentile latency (ns)   : 15054837
+95.00 percentile latency (ns)   : 15458694
+97.00 percentile latency (ns)   : 15936115
+99.00 percentile latency (ns)   : 18226636
+99.90 percentile latency (ns)   : 18226636
+
+================================================
+Test Parameters Used
+================================================
+samples_per_query : 1
+target_qps : 1600
+target_latency (ns): 100000000
+max_async_queries : 0
+min_duration (ms): 600000
+max_duration (ms): 0
+min_query_count : 270336
+max_query_count : 0
+qsl_rng_seed : 6655344265603136530
+sample_index_rng_seed : 15863379492028895792
+schedule_rng_seed : 12662793979680847247
+accuracy_log_rng_seed : 0
+accuracy_log_probability : 0
+accuracy_log_sampling_target : 0
+print_timestamps : 0
+performance_issue_unique : 1
+performance_issue_same : 0
+performance_issue_same_index : 0
+performance_sample_count : 64
+
+1 warning encountered. See detailed log.
+
+No errors encountered during test.

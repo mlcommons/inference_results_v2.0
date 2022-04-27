@@ -1,0 +1,1 @@
+Please refer to ../mlperf/src/ssd_small

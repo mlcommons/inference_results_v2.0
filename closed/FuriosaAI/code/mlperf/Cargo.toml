@@ -1,0 +1,65 @@
+[package]
+name = "mlperf"
+authors = ["FuriosaAI Inc."]
+version = "0.1.0"
+edition = "2021"
+build = "build.rs"
+exclude = ["cached/", "scripts", "models"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-channel = "1.6.1"
+cached = "0.23.0"
+cached-persistence = { git = "https://github.com/furiosa-ai/cached-persistence" }
+checksums = "0.9.1"
+crossbeam = "0.8.1"
+eyre = "0.6.5"
+futures = "0.3.17"
+itertools = "0.10.3"
+lazy_static = "1.4.0"
+loadgen = { path = "../loadgen" }
+npu-compiler = { path = "../npu-tools/crates/npu-compiler" }
+npu-config = { path = "../npu-tools/crates/npu-config" }
+npu-executor = { path = "../npu-tools/crates/npu-executor" }
+npu-ir = { path = "../npu-tools/crates/npu-ir" }
+nux = { path = "../npu-tools/crates/nux", features = ["manual_thread_affinity_and_priority"]}
+onnx = { path = "../npu-tools/crates/onnx" }
+pprof = { version = "0.4", features = ["flamegraph"] }
+prost = "0.9.0"
+rayon = "1.5.1"
+serde = { version = "1.0.133", features = ["derive"] }
+serde_json = "1.0.74"
+structopt = { version = "0.3.25", features = ["wrap_help"] }
+tokio = { version = "1.13.1", features = ["full"] }
+console-api = "0.1.2"
+console-subscriber = "0.1.2"
+tracing = "0.1.29"
+tracing-appender = "0.2.0"
+tracing-chrometrace = "0.1.4"
+tracing-subscriber = { version = "0.3.1", features = ["env-filter", "json"] }
+cpp = "0.5.6"
+openmp-sys = "1.2.3"
+
+
+[dev-dependencies]
+criterion = "0.3"
+iai = "0.1"
+
+[build-dependencies]
+cpp_build = "0.5.6"
+cbindgen = "0.20.0"
+
+[[bench]]
+name = "post_process"
+harness = false
+
+# this fails under target-cpu=native
+# [[bench]]
+# name = "iai_post_process"
+# harness = false
+
+[profile.release]
+# codegen-units of 1 gives best optimization, but disables parallel building.
+# Default: 16
+codegen-units = 1
